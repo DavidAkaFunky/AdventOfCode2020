@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 int part1(FILE* fp){
     char letter;
