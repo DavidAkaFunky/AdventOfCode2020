@@ -32,8 +32,9 @@ int main(){
     FILE* fp = fopen("input.txt", "r");
     if (!fp)
         return 1;
-    printf("%d\n", part1(fp));
+    printf("%d\n", part1(fp)); //445
     rewind(fp);
-    printf("%d\n", part2(fp));
+    printf("%d\n", part2(fp)); //491
+    fclose(fp);
     return 0;
 }
