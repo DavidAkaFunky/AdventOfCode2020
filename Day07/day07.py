@@ -11,7 +11,6 @@ def part1(input) -> int:
                     if carrier in line:
                         total += 1
                         added += 1
-                        print(name)
                         carriers.append(name)
                         break
         if added == 0:
@@ -21,13 +20,13 @@ def part1(input) -> int:
     return total
 
 def part2(input) -> int:
-    def calculateTotalValidBags(bags, name) -> int:
-        total = 0
+    def calculateTotalBags(bags, name) -> int:
         if bags[name] == {}:
-            return total
+            return 0
         else:
+            total = 0
             for bag in bags[name]:
-                total += (1 + calculateTotalValidBags(bags, bag)) * bags[name][bag]
+                total += (1 + calculateTotalBags(bags, bag)) * bags[name][bag]
             return total
     bags = {}
     for line in input:
@@ -38,7 +37,7 @@ def part2(input) -> int:
             for i in range(4, len(line), 4):
                 content = line[i+1] + " " + line[i+2]
                 bags[name][content] = int(line[i])
-    return calculateTotalValidBags(bags, "shiny gold")
+    return calculateTotalBags(bags, "shiny gold")
     
     
 
