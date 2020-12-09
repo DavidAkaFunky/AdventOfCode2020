@@ -49,6 +49,6 @@ def part2(input) -> int:
 
 f = open("input.txt", "r")
 input = f.read().splitlines()
-#print(part1(input)) #1782
-print(part2(input))
+print(part1(input)) #1782
+print(part2(input)) #797
 f.close()
