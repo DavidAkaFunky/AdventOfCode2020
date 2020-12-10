@@ -8,19 +8,20 @@ def part1(input) -> int:
     return count1 * count3
 
 def part2(input) -> int:
-    #TO DO
-    def possibleArrangements(input, lst, i):
-        if i == len(input) - 1:
-            print(lst)
-            return lst
-        j = i + 1
-        res = []
-        while input[j] - input[i] <= 3 and j < len(input):
-            res += [possibleArrangements(input, lst + [input[j]], j)]
-            j += 1
+    valid = {}
+    def possibleArrangements(input) -> int:
+        if len(input) <= 1:
+            return 1
+        if input[0] in valid:
+            return valid[input[0]]
+        i = 1
+        res = 0
+        while i < len(input) and input[i] - input[0] <= 3:
+            res += possibleArrangements(input[i:])
+            i += 1
+        valid[input[0]] = res
         return res
-    res = possibleArrangements(input, [], 0)
-    return len(res)
+    return possibleArrangements(input)
 
 f = open("input.txt", "r")
 input = f.read().splitlines()
@@ -28,6 +29,6 @@ for i in range(len(input)):
     input[i] = int(input[i])
 input.append(0)
 input.sort()
-input.append(input[len(input)-1] + 3)
+input.append(input[-1] + 3)
 print(part1(input)) #2310
-print(part2(input))
+print(part2(input)) #64793042714624
