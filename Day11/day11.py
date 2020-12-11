@@ -18,22 +18,31 @@ def part1(input) -> int:
         new_input = deepcopy(input)
 
         for i in range(len(input)):
+
             minY, maxY = i-1, i+1
+
             if i == 0:
                 minY = 0
+
             if i == len(input) - 1:
                 maxY = len(input) - 1
+
             new_input[i] = list(new_input[i])
 
             for j in range(len(input[i])):
+
                 minX, maxX = j-1, j+1
+
                 if j == 0:
                     minX = 0
+
                 if j == len(input[i]) - 1:
                     maxX = len(input[i]) - 1
+
                 if input[i][j] == "L" and not testSeats(input, j, i, minX, maxX, minY, maxY, 1):
                     new_input[i][j] = "#"
                     count += 1
+
                 elif input[i][j] == "#" and testSeats(input, j, i, minX, maxX, minY, maxY, 4):
                     new_input[i][j] = "L"
                     count -= 1
@@ -53,24 +62,33 @@ def part2(input) -> int:
     def testSeats(input, centreX, centreY, threshold) -> bool:
 
         def findSeat(addX, addY) -> int:
+
             x, y = centreX + addX, centreY + addY
+        
             while 0 <= y < len(input) and 0 <= x < len(input[y]):
+
                 if input[y][x] == "#":
                     return 1
+
                 elif input[y][x] == "L":
                     return 0
+
                 x += addX
                 y += addY
+
             return 0
 
         adds = (-1, 0, 1)    
         count = 0
+
         for i in adds:
             for j in adds:
                 if (i,j) != (0,0):
                     count += findSeat(i, j)
+
         if count >= threshold:
             return True
+
         return False
 
     from copy import deepcopy
@@ -103,5 +121,5 @@ def part2(input) -> int:
 
 f = open("input.txt", "r")
 input = f.read().splitlines()
-print(part1(input))
-print(part2(input))
+print(part1(input)) #2361
+print(part2(input)) #2119
