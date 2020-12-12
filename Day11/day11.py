@@ -57,6 +57,7 @@ def part1(input) -> int:
 
     return count
 
+
 def part2(input) -> int:
 
     def testSeats(input, centreX, centreY, threshold) -> bool:
